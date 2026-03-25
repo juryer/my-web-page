@@ -308,14 +308,20 @@
     @media (max-width: 768px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
-      .hero { padding: 100px 24px 60px; }
-      section { padding: 64px 24px; }
+      .hero { padding: 80px 24px 48px; min-height: auto; }
+      .hero-name { font-size: 48px; }
+      .hero-bio { font-size: 15px; word-break: break-word; overflow-wrap: break-word; }
+      .hero-cta { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+      section { padding: 56px 24px; }
       .about-grid { grid-template-columns: 1fr; gap: 32px; }
       .work-card { grid-template-columns: 1fr; }
       .work-thumb { min-height: 200px; }
       .work-thumb img { object-fit: contain; }
+      .work-body { padding: 24px; }
       .skills-grid { grid-template-columns: 1fr; }
       .work-features { grid-template-columns: 1fr; }
+      .work-meta { flex-direction: column; gap: 12px; }
       footer { padding: 40px 24px; }
     }
   </style>
