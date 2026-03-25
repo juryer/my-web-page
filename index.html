@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio – NAME</title>
+  <title>Portfolio – J・K</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -194,7 +194,7 @@
       box-shadow: var(--shadow-lg);
     }
     .work-thumb {
-      background: linear-gradient(135deg, #1a2a20 0%, #2d4a38 50%, #1a3028 100%);
+      background: linear-gradient(135deg, #2d5a3d 0%, #4a8c62 50%, #2d6a4f 100%);
       display: flex; align-items: center; justify-content: center;
       min-height: 220px;
       position: relative; overflow: hidden;
@@ -202,7 +202,7 @@
     .work-thumb::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(82,183,136,0.2), transparent 60%);
+      background: radial-gradient(circle at 30% 50%, rgba(162,232,193,0.35), transparent 60%);
     }
     .work-thumb-icon {
       font-size: 52px; position: relative; z-index: 1;
@@ -276,20 +276,21 @@
 
     /* ── Footer ── */
     footer {
-      background: var(--ink); color: rgba(255,255,255,0.5);
+      background: #eeeae4; color: var(--ink3);
       padding: 48px; text-align: center;
+      border-top: 1px solid var(--border);
     }
     .footer-name {
       font-family: 'Shippori Mincho', serif;
       font-size: 22px; font-weight: 700;
-      color: #fff; margin-bottom: 16px;
+      color: var(--ink); margin-bottom: 16px;
     }
     .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 32px; }
     .footer-links a {
-      font-size: 13px; color: rgba(255,255,255,0.5);
+      font-size: 13px; color: var(--ink3);
       text-decoration: none; transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--accent2); }
+    .footer-links a:hover { color: var(--accent); }
     .footer-copy { font-size: 12px; }
 
     /* ── Animations ── */
@@ -322,7 +323,7 @@
 
 <!-- Nav -->
 <nav>
-  <a href="#" class="nav-logo">NAME</a>
+  <a href="#" class="nav-logo">J・K</a>
   <ul class="nav-links">
     <li><a href="#about">自己紹介</a></li>
     <li><a href="#works">制作物</a></li>
@@ -335,11 +336,11 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Portfolio</div>
-    <h1 class="hero-name">NAME<span>.</span></h1>
+    <h1 class="hero-name">J・K<span>.</span></h1>
     <p class="hero-bio">
-      ここに自己紹介文を入力してください。<br>
-      例：音楽と技術が好きなエンジニア志望です。<br>
-      自分が使いたいものを自分で作ることが好きです。
+      大学を卒業後は５年ほどテスト業務を行いましたが、<br>
+      設計・プログラマを目指してプログラミング学習を開始。<br>
+      まだできることは少ないですが地に足をつけ、１つずつ精進します。
     </p>
     <div class="hero-cta">
       <a href="#works" class="btn-primary">制作物を見る →</a>
@@ -356,22 +357,22 @@
   <h2 class="section-title reveal">自己紹介</h2>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>ここに自己紹介文を入力してください。</p>
-      <p>どんなきっかけでプログラミングを始めたか、どんなものを作りたいか、どんなエンジニアを目指しているかなどを書くと良いです。</p>
-      <p>2〜3段落程度が読みやすいです。</p>
+      <p>音楽とアニメが好きなエンジニア志望です。</p>
+      <p>プログラミング歴はまだまだ浅いので先輩たちに追いつけるよう精進します。</p>
+      <p>現在は自分が使いたいアプリを開発しています。</p>
     </div>
     <div class="about-facts reveal">
       <div class="fact-item">
-        <div class="fact-label">得意分野</div>
+        <div class="fact-label">現在取り組んでいる学習</div>
         <div class="fact-value">Javaアプリケーション開発</div>
       </div>
       <div class="fact-item">
         <div class="fact-label">興味・関心</div>
-        <div class="fact-value">音楽 / プログラミング / ツール開発</div>
+        <div class="fact-value">音楽 / アニメ / ツール開発</div>
       </div>
       <div class="fact-item">
-        <div class="fact-label">現在学習中</div>
-        <div class="fact-value">Java / オブジェクト指向設計</div>
+        <div class="fact-label">目標</div>
+        <div class="fact-value">不具合が少ない開発ができるエンジニアになること</div>
       </div>
     </div>
   </div>
@@ -395,17 +396,16 @@
         </div>
         <h3 class="work-title">コード進行管理アプリ</h3>
         <p class="work-desc">
-          作曲時のコード進行を管理するデスクトップアプリケーション。
-          コードネーム・ディグリーネームの切替表示、楽曲構成エディタ、
-          MIDIファイル出力など実用的な機能を搭載。
+          音楽制作の現場では「このコード進行をメモしておきたい」という場面が多くあります。そのニーズを解決するために開発した自作ツールです。
+          AIを活用しながら、楽曲をセクション（Aメロ・サビなど）単位で構成できるエディタやMIDIファイル出力など実用的な機能をゼロから設計・開発しました。
+          初めて開発したアプリですが、テスト業務で培った品質を意識する視点を活かして取り組みました。
         </p>
         <div class="work-features">
           <div class="work-feature">コード進行の登録・管理</div>
-          <div class="work-feature">ディグリーネーム変換</div>
-          <div class="work-feature">楽曲セクション構成エディタ</div>
+          <div class="work-feature">コードネーム・ディグリーネームどちらでも入力可能</div>
+          <div class="work-feature">曲単位でコード進行の作成も可能</div>
           <div class="work-feature">MIDIファイル出力</div>
-          <div class="work-feature">JSONによるデータ永続化</div>
-          <div class="work-feature">exe化・単体配布対応</div>
+          <div class="work-feature">データ保存</div>
         </div>
         <div class="work-meta">
           <div class="work-stats">
@@ -426,7 +426,7 @@
 <!-- Skills -->
 <section class="skills" id="skills">
   <div class="section-label">Skills</div>
-  <h2 class="section-title reveal">スキルセット</h2>
+  <h2 class="section-title reveal">使用技術</h2>
   <div class="skills-grid">
     <div class="skill-group reveal">
       <div class="skill-group-title">言語</div>
@@ -446,7 +446,6 @@
       <div class="skill-group-title">ツール・環境</div>
       <div class="skill-list">
         <span class="skill-chip">Eclipse</span>
-        <span class="skill-chip">GitHub</span>
         <span class="skill-chip">jpackage</span>
       </div>
     </div>
@@ -455,14 +454,14 @@
 
 <!-- Footer -->
 <footer>
-  <div class="footer-name">NAME</div>
+  <div class="footer-name">J・K</div>
   <div class="footer-links">
     <a href="#about">自己紹介</a>
     <a href="#works">制作物</a>
     <a href="#skills">スキル</a>
     <a href="https://github.com/あなたのユーザー名" target="_blank">GitHub</a>
   </div>
-  <div class="footer-copy">© 2025 NAME. All rights reserved.</div>
+  <div class="footer-copy">© 2025 J・K. All rights reserved.</div>
 </footer>
 
 <script>
