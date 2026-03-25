@@ -312,7 +312,8 @@
       section { padding: 64px 24px; }
       .about-grid { grid-template-columns: 1fr; gap: 32px; }
       .work-card { grid-template-columns: 1fr; }
-      .work-thumb { min-height: 160px; }
+      .work-thumb { min-height: 200px; }
+      .work-thumb img { object-fit: contain; }
       .skills-grid { grid-template-columns: 1fr; }
       .work-features { grid-template-columns: 1fr; }
       footer { padding: 40px 24px; }
@@ -328,7 +329,7 @@
     <li><a href="#about">自己紹介</a></li>
     <li><a href="#works">制作物</a></li>
     <li><a href="#skills">スキル</a></li>
-    <li><a href="https://github.com/あなたのユーザー名" target="_blank">GitHub</a></li>
+    <li><a href="https://github.com/juryer" target="_blank">GitHub</a></li>
   </ul>
 </nav>
 
@@ -386,7 +387,9 @@
   <div class="works-grid">
     <div class="work-card reveal">
       <div class="work-thumb">
-        <div class="work-thumb-icon">🎸</div>
+        <img src="https://raw.githubusercontent.com/juryer/my-web-page/main/image.webp"
+             alt="コード進行管理アプリ画面"
+             style="width:100%; height:100%; object-fit:contain; display:block; background:#1a1a2e; padding:8px;">
       </div>
       <div class="work-body">
         <div class="work-tags">
