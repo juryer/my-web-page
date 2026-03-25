@@ -1,12 +1,485 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – NAME</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f7f5f2;
+      --bg2:       #ffffff;
+      --ink:       #1a1814;
+      --ink2:      #5a5550;
+      --ink3:      #9a948e;
+      --accent:    #2d6a4f;
+      --accent2:   #52b788;
+      --border:    #e4e0db;
+      --card-bg:   #ffffff;
+      --shadow:    0 2px 20px rgba(0,0,0,0.07);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,245,242,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--ink); text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500;
+      color: var(--ink2); text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 100px 48px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; right: -80px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(82,183,136,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -60px; left: 10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(45,106,79,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 900px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 24px; height: 1px; background: var(--accent);
+    }
+    .hero-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.02em; color: var(--ink);
+      margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-bio {
+      font-size: 17px; color: var(--ink2);
+      max-width: 520px; line-height: 1.8;
+      margin-bottom: 40px;
+      opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+    }
+    .hero-cta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #fff;
+      padding: 13px 28px; border-radius: 6px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 2px 12px rgba(45,106,79,0.25);
+    }
+    .btn-primary:hover {
+      background: #245a41;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(45,106,79,0.35);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--ink);
+      padding: 13px 28px; border-radius: 6px;
+      border: 1.5px solid var(--border);
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent); color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* ── Section共通 ── */
+    section { padding: 96px 48px; }
+    .section-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-label::after {
+      content: ''; flex: 1; max-width: 40px;
+      height: 1px; background: var(--accent2);
+    }
+    .section-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.01em; margin-bottom: 48px;
+    }
+
+    /* ── About ── */
+    .about { background: var(--bg2); border-top: 1px solid var(--border); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; max-width: 960px;
+    }
+    .about-text { font-size: 16px; color: var(--ink2); line-height: 1.9; }
+    .about-text p + p { margin-top: 16px; }
+    .about-facts { display: flex; flex-direction: column; gap: 20px; }
+    .fact-item {
+      padding: 20px 24px;
+      background: var(--bg); border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .fact-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink3); margin-bottom: 4px;
+    }
+    .fact-value { font-size: 15px; font-weight: 500; color: var(--ink); }
+
+    /* ── Works ── */
+    .works { background: var(--bg); }
+    .works-grid { display: grid; gap: 32px; max-width: 960px; }
+    .work-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: grid; grid-template-columns: 1fr 2fr;
+    }
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .work-thumb {
+      background: linear-gradient(135deg, #1a2a20 0%, #2d4a38 50%, #1a3028 100%);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 220px;
+      position: relative; overflow: hidden;
+    }
+    .work-thumb::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(82,183,136,0.2), transparent 60%);
+    }
+    .work-thumb-icon {
+      font-size: 52px; position: relative; z-index: 1;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+    .work-body { padding: 32px 36px; }
+    .work-tags {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .tag {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.06em; padding: 3px 10px;
+      border-radius: 20px; background: rgba(45,106,79,0.08);
+      color: var(--accent); border: 1px solid rgba(45,106,79,0.2);
+    }
+    .work-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px; font-weight: 700;
+      margin-bottom: 12px; color: var(--ink);
+    }
+    .work-desc { font-size: 14px; color: var(--ink2); line-height: 1.8; margin-bottom: 20px; }
+    .work-features {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 8px; margin-bottom: 24px;
+    }
+    .work-feature {
+      font-size: 13px; color: var(--ink2);
+      display: flex; align-items: flex-start; gap: 6px;
+    }
+    .work-feature::before {
+      content: '✓'; color: var(--accent2);
+      font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .work-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 20px; border-top: 1px solid var(--border);
+    }
+    .work-stats { display: flex; gap: 20px; }
+    .stat { font-size: 12px; color: var(--ink3); }
+    .stat strong { color: var(--ink); font-weight: 600; }
+    .work-link {
+      font-size: 13px; font-weight: 500; color: var(--accent);
+      text-decoration: none; display: flex; align-items: center; gap: 4px;
+      transition: gap 0.2s;
+    }
+    .work-link:hover { gap: 8px; }
+
+    /* ── Skills ── */
+    .skills { background: var(--bg2); border-top: 1px solid var(--border); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 960px;
+    }
+    .skill-group {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 28px;
+    }
+    .skill-group-title {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink3); margin-bottom: 16px;
+    }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-chip {
+      font-size: 13px; font-weight: 500;
+      padding: 5px 12px; border-radius: 6px;
+      background: var(--bg2); border: 1px solid var(--border);
+      color: var(--ink);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.5);
+      padding: 48px; text-align: center;
+    }
+    .footer-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px; font-weight: 700;
+      color: #fff; margin-bottom: 16px;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 32px; }
+    .footer-links a {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent2); }
+    .footer-copy { font-size: 12px; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      section { padding: 64px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .work-card { grid-template-columns: 1fr; }
+      .work-thumb { min-height: 160px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .work-features { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to My GitHub Pages Site</h1>
-    <p>This is my first GitHub Pages deployment!</p>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-logo">NAME</a>
+  <ul class="nav-links">
+    <li><a href="#about">自己紹介</a></li>
+    <li><a href="#works">制作物</a></li>
+    <li><a href="#skills">スキル</a></li>
+    <li><a href="https://github.com/あなたのユーザー名" target="_blank">GitHub</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Portfolio</div>
+    <h1 class="hero-name">NAME<span>.</span></h1>
+    <p class="hero-bio">
+      ここに自己紹介文を入力してください。<br>
+      例：音楽と技術が好きなエンジニア志望です。<br>
+      自分が使いたいものを自分で作ることが好きです。
+    </p>
+    <div class="hero-cta">
+      <a href="#works" class="btn-primary">制作物を見る →</a>
+      <a href="https://github.com/あなたのユーザー名" target="_blank" class="btn-secondary">
+        GitHub を見る
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-title reveal">自己紹介</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>ここに自己紹介文を入力してください。</p>
+      <p>どんなきっかけでプログラミングを始めたか、どんなものを作りたいか、どんなエンジニアを目指しているかなどを書くと良いです。</p>
+      <p>2〜3段落程度が読みやすいです。</p>
+    </div>
+    <div class="about-facts reveal">
+      <div class="fact-item">
+        <div class="fact-label">得意分野</div>
+        <div class="fact-value">Javaアプリケーション開発</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">興味・関心</div>
+        <div class="fact-value">音楽 / プログラミング / ツール開発</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-label">現在学習中</div>
+        <div class="fact-value">Java / オブジェクト指向設計</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Works -->
+<section class="works" id="works">
+  <div class="section-label">Works</div>
+  <h2 class="section-title reveal">制作物</h2>
+  <div class="works-grid">
+    <div class="work-card reveal">
+      <div class="work-thumb">
+        <div class="work-thumb-icon">🎸</div>
+      </div>
+      <div class="work-body">
+        <div class="work-tags">
+          <span class="tag">Java</span>
+          <span class="tag">Swing</span>
+          <span class="tag">Gson</span>
+          <span class="tag">MIDI</span>
+        </div>
+        <h3 class="work-title">コード進行管理アプリ</h3>
+        <p class="work-desc">
+          作曲時のコード進行を管理するデスクトップアプリケーション。
+          コードネーム・ディグリーネームの切替表示、楽曲構成エディタ、
+          MIDIファイル出力など実用的な機能を搭載。
+        </p>
+        <div class="work-features">
+          <div class="work-feature">コード進行の登録・管理</div>
+          <div class="work-feature">ディグリーネーム変換</div>
+          <div class="work-feature">楽曲セクション構成エディタ</div>
+          <div class="work-feature">MIDIファイル出力</div>
+          <div class="work-feature">JSONによるデータ永続化</div>
+          <div class="work-feature">exe化・単体配布対応</div>
+        </div>
+        <div class="work-meta">
+          <div class="work-stats">
+            <div class="stat"><strong>19</strong> クラス</div>
+            <div class="stat"><strong>4,027</strong> 行</div>
+            <div class="stat"><strong>Java 21</strong></div>
+          </div>
+          <a href="https://github.com/あなたのユーザー名/ChordProgressionApp"
+             target="_blank" class="work-link">
+            GitHub で見る →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="skills" id="skills">
+  <div class="section-label">Skills</div>
+  <h2 class="section-title reveal">スキルセット</h2>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">言語</div>
+      <div class="skill-list">
+        <span class="skill-chip">Java</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">フレームワーク・ライブラリ</div>
+      <div class="skill-list">
+        <span class="skill-chip">Swing</span>
+        <span class="skill-chip">Gson</span>
+        <span class="skill-chip">javax.sound.midi</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">ツール・環境</div>
+      <div class="skill-list">
+        <span class="skill-chip">Eclipse</span>
+        <span class="skill-chip">GitHub</span>
+        <span class="skill-chip">jpackage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-name">NAME</div>
+  <div class="footer-links">
+    <a href="#about">自己紹介</a>
+    <a href="#works">制作物</a>
+    <a href="#skills">スキル</a>
+    <a href="https://github.com/あなたのユーザー名" target="_blank">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2025 NAME. All rights reserved.</div>
+</footer>
+
+<script>
+  // スクロールアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // 兄弟要素に遅延をつける
+        const siblings = e.target.parentElement.querySelectorAll('.reveal');
+        siblings.forEach((el, i) => {
+          el.style.transitionDelay = (i * 0.1) + 's';
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
